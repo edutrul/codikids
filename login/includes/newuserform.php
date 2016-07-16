@@ -8,9 +8,9 @@ class NewUserForm extends DbConn
             $db = new DbConn;
             $tbl_users = $db->tbl_users;
             // prepare sql and bind parameters
-            $stmt = $db->conn->prepare("INSERT INTO ".$tbl_users." (id, username, password, email)
-            VALUES (:id, :username, :password, :email)");
-            $stmt->bindParam(':id', $uid);
+            $stmt = $db->conn->prepare("INSERT INTO ".$tbl_users." (uid, username, password, email)
+            VALUES (:uid, :username, :password, :email)");
+            $stmt->bindParam(':uid', $uid);
             $stmt->bindParam(':username', $usr);
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':password', $pw);
