@@ -5,11 +5,11 @@ class Verify extends DbConn
     {
         try {
             $vdb = new DbConn;
-            $tbl_members = $vdb->tbl_members;
+            $tbl_users = $vdb->tbl_users;
             $verr = '';
 
         // prepare sql and bind parameters
-        $vstmt = $vdb->conn->prepare('UPDATE '.$tbl_members.' SET verified = :verify WHERE id = :uid');
+        $vstmt = $vdb->conn->prepare('UPDATE '.$tbl_users.' SET verified = :verify WHERE id = :uid');
             $vstmt->bindParam(':uid', $uid);
             $vstmt->bindParam(':verify', $verify);
             $vstmt->execute();

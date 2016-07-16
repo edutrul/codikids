@@ -1,7 +1,7 @@
 <?php
 class MailSender
 {
-    public function sendMail($email, $user, $id, $type)
+    public function sendMail($email, $user, $uid, $type)
     {
         require 'scripts/PHPMailer/PHPMailerAutoload.php';
         include 'config.php';
@@ -11,7 +11,7 @@ class MailSender
         // ADD $_SERVER['SERVER_PORT'] TO $verifyurl STRING AFTER $_SERVER['SERVER_NAME'] FOR DEV URLS USING PORTS OTHER THAN 80
         // substr() trims "createuser.php" off of the current URL and replaces with verifyuser.php
         // Can pass 1 (verified) or 0 (unverified/blocked) into url for "v" parameter
-        $verifyurl = substr($base_url . $_SERVER['PHP_SELF'], 0, -strlen(basename($_SERVER['PHP_SELF']))) . "verifyuser.php?v=1&uid=" . $id;
+        $verifyurl = substr($base_url . $_SERVER['PHP_SELF'], 0, -strlen(basename($_SERVER['PHP_SELF']))) . "verifyuser.php?v=1&uid=" . $uid;
 
         // Create a new PHPMailer object
         // ADD sendmail_path = "env -i /usr/sbin/sendmail -t -i" to php.ini on UNIX servers

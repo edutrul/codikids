@@ -19,7 +19,7 @@ class LoginForm extends DbConn
         try {
 
             $db = new DbConn;
-            $tbl_members = $db->tbl_members;
+            $tbl_users = $db->tbl_users;
             $err = '';
 
         } catch (PDOException $e) {
@@ -28,7 +28,7 @@ class LoginForm extends DbConn
 
         }
 
-        $stmt = $db->conn->prepare("SELECT * FROM ".$tbl_members." WHERE username = :myusername");
+        $stmt = $db->conn->prepare("SELECT * FROM ".$tbl_users." WHERE username = :myusername");
         $stmt->bindParam(':myusername', $myusername);
         $stmt->execute();
 
@@ -48,9 +48,11 @@ class LoginForm extends DbConn
 
                 //Success! Register $myusername, $mypassword and return "true"
                 $success = 'true';
-                    session_start();
-
-                    $_SESSION['username'] = $myusername;
+                session_start();
+                $_SESSION['username'] = $myusername;
+                $_SESSION['email'] = !empty($result['email']) ? $result['email'] : '';
+                $_SESSION['first_name'] = !empty($result['first_name']) ? $result['first_name'] : '';
+                $_SESSION['last_name'] = !empty($result['last_name']) ? $result['last_name'] : '';
 
             } elseif (password_verify($mypassword, $result['password']) && $result['verified'] == '0') {
 
