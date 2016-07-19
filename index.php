@@ -19,8 +19,9 @@ $conn->close();
 <!-- Page Features -->
   <div class="row grid">
               <?php foreach ($juegos as $juego):?>
-        <div class="element-item col-md-2 <?php print $juego->dificultad ?>" style="width:100%;text-align:center;">
+        <div class="element-item col-md-2 <?php print $juego->dificultad ?>" style="width:100%;text-align:center;"> 
               <br>
+            <span style="font-size:1.5em;font-weight:bold;">• Nivel #</span>
               <img src="images/juegos/<?php print $juego->imagen; ?>" alt="angrybird juego" style="position:relative; padding-left:20px" width="300px">
                   <div style="float:right;  padding-right:20%; ">
                         <div style="padding:8px; width:300px;">
