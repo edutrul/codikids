@@ -26,12 +26,11 @@ $conn->close();
               <span class="descripcion"><?php print $juego->descripcion; ?></span><br>
                 <a href="/reporte.php?<?php print $juego->juego_id; ?>" target="_blank">Ver reporte</a><br><br><br>
                 <span class="descripcion"> Tiempo transcurrido</span><br>
-                <div class="progress">
-                 
-  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-    <span class="sr-only">60% Complete</span>
-  </div>
-            </div>
+                      <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                              5m 27s
+                            </div>
+                     </div>
    
 </div>
       </div>
