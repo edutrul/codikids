@@ -28,3 +28,7 @@ b {
 .arrows.active {
   border: 5px solid red;
 }
+.opacity
+{
+  opacity: 0.3;
+}
