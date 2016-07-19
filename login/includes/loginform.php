@@ -50,6 +50,7 @@ class LoginForm extends DbConn
                 $success = 'true';
                 session_start();
                 $_SESSION['username'] = $myusername;
+                $_SESSION['uid'] = !empty($result['uid']) ? $result['uid'] : '';
                 $_SESSION['email'] = !empty($result['email']) ? $result['email'] : '';
                 $_SESSION['first_name'] = !empty($result['first_name']) ? $result['first_name'] : '';
                 $_SESSION['last_name'] = !empty($result['last_name']) ? $result['last_name'] : '';
