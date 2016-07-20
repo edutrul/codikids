@@ -14,7 +14,7 @@ if ($result->num_rows > 0) {
 
 $result = $conn->query($sql);
 
-$sql = "SELECT * FROM juego";
+$sql = "SELECT * FROM juego j inner join opcion o on j.juego_id = o.juego_id";
 $result = $conn->query($sql);
 $juegos = array();
 
@@ -51,7 +51,10 @@ $conn->close();
                                            <span class="descripcion"> Tiempo transcurrido</span><br>
                                             <div class="progress">
                                                 <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                                  5m 27s
+                                                  <?php 
+                                                  $minuto = floor($juego->timer/60);
+                                                  $segundos = $juego->timer -($minuto*60);
+                                                  print $minuto."min"." ".$segundos."seg"?>
                                                 </div>
                                             </div>
                         </div>
