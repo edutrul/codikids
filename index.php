@@ -28,16 +28,15 @@ $conn->close();
                             <h2 class="nombre"><?php print $juego->titulo;?></h2>
                               <br>
                                 <span class="descripcion"><?php print $juego->descripcion; ?></span><br>
-                                    <a href="/reporte.php?<?php print $juego->juego_id; ?>" target="_blank">Ver reporte</a><br>
+                                    <a href="/reporte.php?juego=<?php print $juego->juego_id; ?>" target="_blank">Ver reporte</a><br>
                                         <br><br>
                                            <span class="descripcion"> Tiempo transcurrido</span><br>
-                                  <div class="progress">
-                                              <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                                5m 27s
-                        </div>                      
-                                              </div>
-                                  </div>
-         
+                                      <div class="progress">
+                                          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                            5m 27s
+                                          </div>
+                                      </div>
+                        </div>
                   </div>
          </div>
               <?php endforeach; ?>
