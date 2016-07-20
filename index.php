@@ -18,6 +18,7 @@ $conn->close();
       
 <!-- Page Features -->
   <div class="row grid">
+    <!-- @TODO: APPLY CODING STANDARDS. -->
               <?php foreach ($juegos as $juego):?>
         <div class="element-item col-md-2 <?php print $juego->dificultad ?>" style="width:100%;text-align:center;"> 
               <br>
