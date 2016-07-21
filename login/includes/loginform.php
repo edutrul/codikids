@@ -38,22 +38,22 @@ class LoginForm extends DbConn
         if ($curr_attempts >= $max_attempts && $timeDiff < $login_timeout) {
 
             //Too many failed attempts
-            $success = "<div class=\"alert alert-danger alert-dismissable\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>Maximum number of login attempts exceeded... please wait ".$timeout_minutes." minutes before logging in again</div>";
+            $message['response'] = "<div class=\"alert alert-danger alert-dismissable\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>Maximum number of login attempts exceeded... please wait ".$timeout_minutes." minutes before logging in again</div>";
 
         } else {
 
              //If max attempts not exceeded, continue
             // Checks password entered against db password hash
             if (password_verify($mypassword, $result['password']) && $result['verified'] == '1') {
-
-                //Success! Register $myusername, $mypassword and return "true"
-                $success = 'true';
                 session_start();
-                $_SESSION['username'] = $myusername;
-                $_SESSION['uid'] = !empty($result['uid']) ? $result['uid'] : '';
-                $_SESSION['email'] = !empty($result['email']) ? $result['email'] : '';
-                $_SESSION['first_name'] = !empty($result['first_name']) ? $result['first_name'] : '';
-                $_SESSION['last_name'] = !empty($result['last_name']) ? $result['last_name'] : '';
+                //Success! Register $myusername, $mypassword and return "true"
+                $message['response'] = 'true';
+                $message['uid'] = !empty($result['uid']) ? $result['uid'] : '';
+                $message['username'] = $myusername;
+                $message['email'] = !empty($result['email']) ? $result['email'] : '';
+                $message['first_name'] = !empty($result['first_name']) ? $result['first_name'] : '';
+                $message['last_name'] = !empty($result['last_name']) ? $result['last_name'] : '';
+                $_SESSION = $message;
 
             } elseif (password_verify($mypassword, $result['password']) && $result['verified'] == '0') {
 
@@ -67,7 +67,7 @@ class LoginForm extends DbConn
 
             }
         }
-        return $success;
+        return $message;
     }
 
     public function insertAttempt($username)

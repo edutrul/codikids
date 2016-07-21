@@ -13,7 +13,7 @@ $password = $_POST['mypassword'];
 $username = stripslashes($username);
 $password = stripslashes($password);
 
-$response = '';
+$message = '';
 $loginCtl = new LoginForm;
 $conf = new GlobalConf;
 $lastAttempt = checkAttempts($username);
@@ -25,30 +25,32 @@ if ($lastAttempt['lastlogin'] == '') {
 
     $lastlogin = 'never';
     $loginCtl->insertAttempt($username);
-    $response = $loginCtl->checkLogin($username, $password);
+    $message = $loginCtl->checkLogin($username, $password);
 
 } elseif ($lastAttempt['attempts'] >= $max_attempts) {
 
     //Exceeded max attempts
     $loginCtl->updateAttempts($username);
-    $response = $loginCtl->checkLogin($username, $password);
+    $message = $loginCtl->checkLogin($username, $password);
 
 } else {
 
-    $response = $loginCtl->checkLogin($username, $password);
+    $message = $loginCtl->checkLogin($username, $password);
 
-};
+}
 
-if ($lastAttempt['attempts'] < $max_attempts && $response != 'true') {
+if ($lastAttempt['attempts'] < $max_attempts && 
+    isset($message['response']) &&
+    $message['response'] != 'true') {
 
     $loginCtl->updateAttempts($username);
-    $resp = new RespObj($username, $response);
+    $resp = new RespObj($username, $message);
     $jsonResp = json_encode($resp);
     echo $jsonResp;
 
 } else {
 
-    $resp = new RespObj($username, $response);
+    $resp = new RespObj($username, $message);
     $jsonResp = json_encode($resp);
     echo $jsonResp;
 
