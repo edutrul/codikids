@@ -14,7 +14,7 @@ if ($result->num_rows > 0) {
 
 $result = $conn->query($sql);
 
-$sql = "SELECT * FROM juego j inner join opcion o on j.juego_id = o.juego_id";
+$sql = "SELECT * FROM juego j inner join opcion o on j.juego_id = o.juego_id order by j.juego_id asc";
 $result = $conn->query($sql);
 $juegos = array();
 
