@@ -37,10 +37,10 @@ $conn->close();
     <!-- @TODO: APPLY CODING STANDARDS. -->
       <?php foreach ($juegos as $juego):?>
         <?php $opacity_class = !$juego->game_not_allowed ? 'opacity' : ''; ?>
-        <div class="element-item col-md-2 <?php print $opacity_class; ?> <?php print $juego->dificultad ?>" style="width:100%;text-align:center;"> 
+        <div class="element-item col-md-2 <?php print $opacity_class; ?> <?php print $juego->dificultad ?>" style="width:100%;text-align:center; padding-bottom:25px;"> 
               <br>
             <span style="font-size:1.5em;font-weight:bold;">• Nivel #<?php print $juego->juego_id?></span>
-              <img src="images/juegos/<?php print $juego->imagen; ?>" alt="angrybird juego" style="position:relative; padding-left:20px" width="300px">
+              <img src="images/juegos/<?php print $juego->imagen; ?>" alt="angrybird juego" style="position:relative; padding-left:20px" width="300px" height="300px">
                   <div style="float:right;  padding-right:20%; ">
                         <div style="padding:8px; width:300px;">
                             <h2 class="nombre"><?php print $juego->titulo;?></h2>
@@ -49,12 +49,27 @@ $conn->close();
                                     <a href="/reporte.php?juego=<?php print $juego->juego_id; ?>" target="_blank">Ver reporte</a><br>
                                         <br><br>
                                            <span class="descripcion"> Tiempo transcurrido</span><br>
-                                            <div class="progress">
-                                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                                  <?php 
+                                             <div class="progress">
+                                                <div class="progress-bar progress-bar-success" style="width: 60%">
+                                                <?php 
                                                   $minuto = floor($juego->timer/60);
                                                   $segundos = $juego->timer -($minuto*60);
                                                   print $minuto."min"." ".$segundos."seg"?>
+                                                </div>
+                                                        <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 25%">
+                                                      <span class="sr-only">25% Complete (warning)</span>
+                                                         </div>
+                                                            <div class="progress-bar progress-bar-danger" style="width: 15%">
+                                                            <span class="sr-only">10% Complete (danger)</span>
+                                                            </div>
+                                            </div>
+                                            <span class="descripcion"> Tiempo Ideal</span><br>
+                                            <div class="progress">
+                                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                                  <?php 
+                                                  $minutojuego = floor($juego->timer_ideal/60);
+                                                  $segundosjuego = $juego->timer_ideal -($minutojuego*60);
+                                                  print $minutojuego."min"." ".$segundosjuego."seg"?>
                                                 </div>
                                             </div>
                         </div>
